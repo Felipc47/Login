@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+
 export function Login () {
 
     const [user, setUser] = useState ({
@@ -11,7 +12,7 @@ export function Login () {
     return <div>
         <form>
 
-            <input className="text-black" type="email" id="email" /> 
+            <input className="text-black" type="email" id="email" placeholder="eMail"/> 
             <input type="password" id="password"/> 
 
 

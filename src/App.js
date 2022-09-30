@@ -9,7 +9,7 @@ export default function App() {
     <div className="bg-black h-screen text-white text-3xl">
     
     <AuthProvider>
-    <Routes>
+    <Routes>  
       <Route path="/" element={ <Home/>} />
       <Route path="/login" element ={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
