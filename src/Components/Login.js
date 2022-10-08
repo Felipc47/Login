@@ -1,24 +1,69 @@
-import { useState } from "react"
+import { useState } from "react";
+import { UseUser } from "../Context/authContext";
+import { useNavigate } from "react-router-dom";
+
+export function Login() {
+
+    const [user, setUser] = useState(
+        {
+            email: '',
+            password: ''
+        }
+    );
+
+    const { login } = UseUser()
+    const navigate = useNavigate()
 
 
-export function Login () {
+    const handleChange = ({ target: { name, value } }) =>
+        setUser({ ...user, [name]: value });
 
-    const [user, setUser] = useState ({
-        email:'',
-        password:''
-    })
+    const [error, setError] = useState()
 
 
-    return <div>
-        <form>
 
-            <input className="text-black" type="email" id="email" placeholder="eMail"/> 
-            <input type="password" id="password"/> 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        try {
+            await login(user.email, user.password)
+            navigate("/welcome")
+        } catch (error) {
+            if (error.code === "auth/wrong-password"){
+                setError("La contraseña es incorrecta")
+            }
+            else if (error.code === "auth/user-not-found") {
+                setError ("El usuario no está registrado")
+            }
+            else if (error.code === "auth/too-many-requests") {
+                setError("Demasiados intentos, usuario bloqueado por 5 minutos")
+            }
+            else{
+            setError(error.code)}
+        }
+
+    }
 
 
-        </form>
+
+    return (
+        <div>
+            {
+                error && <p>{error}</p>
+            }
+            <form className="text-black" onSubmit={handleSubmit}>
+
+                <label htmlFor="email">Email</label>
+                <input onChange={handleChange} type="text" name="email" id="email" placeholder="email@company.com" ></input>
+
+                <label htmlFor="password">password</label>
+                <input onChange={handleChange} type="password" name="password" placeholder="******"></input>
+
+                <button className="text-white border-2 border-white leading-tight
+                hover:bg-white
+                hover:text-black">Login</button>
+
+            </form>
         </div>
-
-    
+    )
 }
 

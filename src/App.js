@@ -3,6 +3,7 @@ import {Home} from './Components/Home'
 import {Login} from './Components/Login'
 import { Register } from './Components/Register'
 import { AuthProvider } from './Context/authContext'
+import { Welcome } from './Components/Welcome'
 
 export default function App() {
   return (
@@ -13,6 +14,7 @@ export default function App() {
       <Route path="/" element={ <Home/>} />
       <Route path="/login" element ={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
+      <Route path="/welcome" element={<Welcome/>}/>
     </Routes>
     </AuthProvider>
     </div>

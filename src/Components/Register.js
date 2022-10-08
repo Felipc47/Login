@@ -11,40 +11,55 @@ export function Register() {
         }
     );
 
-    const {signup} = UseUser ()    
+    const { signup } = UseUser()
     const navigate = useNavigate()
 
 
-    const handleChange = ({target: {name, value}}) => 
-        setUser({...user,[name] : value});
-    
+    const handleChange = ({ target: { name, value } }) =>
+        setUser({ ...user, [name]: value });
+
+    const [error, setError] = useState()
+
 
 
     const handleSubmit = async (e) => {
-        e.preventDefault()  
+        e.preventDefault()
         try {
-        await signup(user.email, user.password)
-        navigate("/")
+            await signup(user.email, user.password)
+            navigate("/")
         } catch (error) {
-            console.log (error.message)
+            if (error.code === "auth/weak-password") {
+                setError("La contraseña debe tener al menos 6 caracteres")
+            } else if (error.code === "auth/invalid-email") {
+                setError("email inválido")
+            } else if (error.code === "auth/email-already-in-use") {
+                setError("Email en uso")
+            }
         }
-       
+
     }
 
+
+
     return (
-        <form className="text-black" onSubmit={handleSubmit}>
+        <div>
+            {
+                error && <p>{error}</p>
+            }
+            <form className="text-black" onSubmit={handleSubmit}>
 
-            <label htmlFor="email">Email</label>
-            <input onChange={handleChange} type="text" name="email" id="email" placeholder="tucorreo@algo.com" ></input>
+                <label htmlFor="email">Email</label>
+                <input onChange={handleChange} type="text" name="email" id="email" placeholder="email@company.com" ></input>
 
-            <label htmlFor="password">password</label>
-            <input onChange={handleChange} type="password" name="password"></input>
+                <label htmlFor="password">password</label>
+                <input onChange={handleChange} type="password" name="password" placeholder="******"></input>
 
-            <button className="text-white border-2 border-white leading-tight
-            hover:bg-white
-            hover:text-black">Register</button>
+                <button className="text-white border-2 border-white leading-tight
+                hover:bg-white
+                hover:text-black">Register</button>
 
-        </form>
+            </form>
+        </div>
     )
 }
 
