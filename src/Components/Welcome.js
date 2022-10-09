@@ -1,10 +1,14 @@
-import { Login } from "../Context/authContext"
-import { useState } from "react"
+import { UseUser } from "../Context/authContext"
 
 export function Welcome () {
 
-    const {user} = useState()
 
-    console.log(user)
+    const {user} = UseUser()
+
+    return <div>
+        
+        <h1>Welcome {user.email}</h1>
+
+    </div>
 }
 
