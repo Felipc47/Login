@@ -9,7 +9,7 @@ export function Welcome () {
 
     const handleLogout = async () => {
         await logout ()
-        navigate("/login")
+        navigate("/")
     }
 
     return <div>

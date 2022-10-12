@@ -11,7 +11,7 @@ export function Login() {
         }
     );
 
-    const { login } = UseUser()
+    const { login, googleLogin } = UseUser()
     const navigate = useNavigate()
 
 
@@ -43,6 +43,18 @@ export function Login() {
 
     }
 
+    const Loogle = async (e) => {
+        e.preventDefault()
+        
+        try {
+            await googleLogin ()
+            navigate('/Welcome')
+        } catch (error) {
+            setError(error.code)
+            
+        }
+    
+    }
 
 
     return (
@@ -61,6 +73,9 @@ export function Login() {
                 <button className="text-white border-2 border-white leading-tight
                 hover:bg-white
                 hover:text-black">Login</button>
+                <button onClick={Loogle}   className="text-white border-2 border-white">
+                    Google login
+                </button>
 
             </form>
         </div>
