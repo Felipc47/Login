@@ -14,7 +14,7 @@ export function Welcome () {
 
     return <div>
         
-        <h1>Welcome {user.email}</h1>
+        <h1>Welcome {user.displayName}</h1>
         <button onClick={handleLogout}> Logout  </button>
     </div>
 }
