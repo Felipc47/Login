@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UseUser } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "./Alert";
 
 export function Login() {
 
@@ -37,6 +38,15 @@ export function Login() {
             else if (error.code === "auth/too-many-requests") {
                 setError("Demasiados intentos, usuario bloqueado por 5 minutos")
             }
+            else if (error.code === "auth/network-request-failed"){
+                setError("Sin conexión a internet")
+            }
+            else if (error.code === "auth/internal-error"){
+                setError("Ingresa la contraseña")
+            }
+            else if (error.code === "auth/invalid-email"){
+                setError("Email inválido")
+            }
             else{
             setError(error.code)}
         }
@@ -50,7 +60,12 @@ export function Login() {
             await googleLogin ()
             navigate('/Welcome')
         } catch (error) {
-            setError(error.code)
+            if (error.code === "auth/popup-closed-by-user"){
+                setError("Cancelado por el usuario")
+            }
+            else {
+                setError(error.code)
+            }
             
         }
     
@@ -60,7 +75,7 @@ export function Login() {
     return (
         <div>
             {
-                error && <p>{error}</p>
+                error && <Alert message={error} />
             }
             <form className="text-black" onSubmit={handleSubmit}>
 
@@ -68,7 +83,7 @@ export function Login() {
                 <input onChange={handleChange} type="text" name="email" id="email" placeholder="email@company.com" ></input>
 
                 <label htmlFor="password">password</label>
-                <input onChange={handleChange} type="password" name="password" placeholder="******"></input>
+                <input onChange={handleChange} type="password" name="password" placeholder="******" autoComplete="off" ></input>
 
                 <button className="text-white border-2 border-white leading-tight
                 hover:bg-white

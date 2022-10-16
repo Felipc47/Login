@@ -12,9 +12,13 @@ export function Welcome () {
         navigate("/")
     }
 
+
+    
+
     return <div>
         
-        <h1>Welcome {user.email}</h1>
+        <h1>Welcome {user.displayName}</h1>
+        <img src={user.photoURL} />
         <button onClick={handleLogout}> Logout  </button>
     </div>
 }
