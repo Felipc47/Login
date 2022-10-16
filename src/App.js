@@ -4,6 +4,7 @@ import {Login} from './Components/Login'
 import { Register } from './Components/Register'
 import { AuthProvider } from './Context/authContext'
 import { Welcome } from './Components/Welcome'
+import { ProtectedRoute } from './Components/ProtectedRoute'
 
 export default function App() {
   return (
@@ -11,10 +12,16 @@ export default function App() {
     
     <AuthProvider>
     <Routes>  
-      <Route path="/" element={ <Home/>} />
+      <Route path="/" element={
+      <Home/>
+      } />
       <Route path="/login" element ={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
-      <Route path="/welcome" element={<Welcome/>}/>
+      <Route path="/welcome" element={
+      <ProtectedRoute>
+      <Welcome/>
+      </ProtectedRoute>
+      }/>
     </Routes>
     </AuthProvider>
     </div>

@@ -18,7 +18,7 @@ export function Welcome () {
     return <div>
         
         <h1>Welcome {user.displayName}</h1>
-        <img src={user.photoURL} />
+        <img src={user.photoURL} width="120px" />
         <button onClick={handleLogout}> Logout  </button>
     </div>
 }

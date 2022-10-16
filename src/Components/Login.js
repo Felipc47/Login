@@ -83,7 +83,7 @@ export function Login() {
                 <input onChange={handleChange} type="text" name="email" id="email" placeholder="email@company.com" ></input>
 
                 <label htmlFor="password">password</label>
-                <input onChange={handleChange} type="password" name="password" placeholder="******" autoComplete="off" ></input>
+                <input onChange={handleChange} type="password" name="password" placeholder="******" autoComplete="off"></input>
 
                 <button className="text-white border-2 border-white leading-tight
                 hover:bg-white
