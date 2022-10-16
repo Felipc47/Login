@@ -5,7 +5,7 @@ export const ProtectedRoute = ({children}) => {
 
     const {user} = UseUser ()
 
-    if (!user) return <Navigate to="/Home" />
+    if (!user) return <Navigate to="/" />
 
     return <>{children}</>
 
