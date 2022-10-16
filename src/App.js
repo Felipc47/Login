@@ -8,7 +8,7 @@ import { ProtectedRoute } from './Components/ProtectedRoute'
 
 export default function App() {
   return (
-    <div className="bg-black h-screen text-white text-3xl">
+    <div className="bg-purple-100 h-screen text-white text-3xl">
     
     <AuthProvider>
     <Routes>  
