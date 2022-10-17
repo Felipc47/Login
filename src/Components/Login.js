@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UseUser } from "../Context/authContext";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "./Alert";
+import { Succes } from "./Succes";
 
 export function Login() {
 
@@ -99,7 +100,7 @@ export function Login() {
                     error && <Alert message={error} />
                 }
                 {
-                    succes && <Alert message={succes} />
+                    succes && <Succes message={succes} />
                 }
                 <span className="bg-purple-50 text-gray-500 font-bold block text-3xl text-center mb-6 p-3 shadow-xl ">Login</span>
                 <form className="bg-white shadow-xl rounded-md pt-2 pb-8 flex flex-col items-center"
