@@ -12,7 +12,7 @@ export function Login() {
         }
     );
 
-    const { login, googleLogin } = UseUser()
+    const { login, googleLogin, resetPassword } = UseUser()
     const navigate = useNavigate()
 
 
@@ -21,8 +21,21 @@ export function Login() {
 
     const [error, setError] = useState()
 
+    const [succes, setSucces] = useState ()
+
     const handleNav = () => {
         navigate("/register")
+    }
+
+    const handleResetPassword = async () => {
+        if (!user.email) return setError("Please enter your email");
+
+        try {
+            await resetPassword (user.email)
+            setSucces("We sent an email with a link to reset your password")
+        } catch (error) {
+            setError(error.code)
+        }
     }
 
 
@@ -85,6 +98,9 @@ export function Login() {
                 {
                     error && <Alert message={error} />
                 }
+                {
+                    succes && <Alert message={succes} />
+                }
                 <span className="bg-purple-50 text-gray-500 font-bold block text-3xl text-center mb-6 p-3 shadow-xl ">Login</span>
                 <form className="bg-white shadow-xl rounded-md pt-2 pb-8 flex flex-col items-center"
                     onSubmit={handleSubmit}>
@@ -123,8 +139,10 @@ export function Login() {
                     autoComplete="off"
                     className="appearance-none shadow-lg drop-shadow-sm hover:drop-shadow-lg border-2 border-gray-200 focus:outline-none rounded-md text-black focus:border-purple-300 py-1 px-2 my-1"
                     ></input>
-
+                    <div className="flex justify-between ">
                     <p onClick={handleNav} navigate="/register" className="text-black text-sm pt-2 text-blue-500 cursor-pointer underline hover:text-blue-700">Register here</p>
+                    <p onClick={handleResetPassword} className="text-black text-sm pt-2 text-blue-500 cursor-pointer underline hover:text-blue-700">Forgot password?</p>
+                    </div>
 
                 </div>
             <div className="flex flex-col mt-3 mb-1">
