@@ -11,15 +11,25 @@ export function Welcome () {
         await logout ()
         navigate("/")
     }
-
-
     
 
-    return <div>
+    return<div className="w-screen h-screen flex justify-center items-center text-2xl">
+        <div 
+        className="w-full max-w-xs flex flex-col justiy-center items-center bg-white text-gray-500 py-5">
         
-        <h1>Welcome {user.displayName}</h1>
-        <img src={user.photoURL} width="120px" />
-        <button onClick={handleLogout}> Logout  </button>
-    </div>
+            <h1 
+            className="pt-1 pb-1 border-purple-100 border-b-2">Welcome {user.displayName}</h1>
+        
+            <img className="pb-8 pt-8" src={user.photoURL} width="140px" />
+            
+            <button
+            className="text-white bg-red-500 border-1 border-white leading-tight hover:bg-red-700 rounded-xl py-2 px-6 text-xl shadow-lg hover:drop-shadow-lg"
+            onClick={handleLogout}> Logout  
+            </button>
+    
+        
+        </div>
+    
+        </div>
 }
 

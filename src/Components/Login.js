@@ -21,6 +21,10 @@ export function Login() {
 
     const [error, setError] = useState()
 
+    const handleNav = () => {
+        navigate("/register")
+    }
+
 
 
     const handleSubmit = async (e) => {
@@ -120,8 +124,10 @@ export function Login() {
                     className="appearance-none shadow-lg drop-shadow-sm hover:drop-shadow-lg border-2 border-gray-200 focus:outline-none rounded-md text-black focus:border-purple-300 py-1 px-2 my-1"
                     ></input>
 
+                    <p onClick={handleNav} navigate="/register" className="text-black text-sm pt-2 text-blue-500 cursor-pointer underline hover:text-blue-700">Register here</p>
+
                 </div>
-            <div className="flex flex-col mt-8 mb-1">
+            <div className="flex flex-col mt-3 mb-1">
                 <button className="text-white bg-blue-500 border-1 border-white leading-tight hover:bg-blue-700 rounded-xl py-2 px-6 text-xl shadow-lg hover:drop-shadow-lg">Login
                 </button>
                 </div>  

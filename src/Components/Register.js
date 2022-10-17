@@ -15,9 +15,13 @@ export function Register() {
     const { signup } = UseUser()
     const navigate = useNavigate()
 
+    const handleNav = () => {
+        navigate("/")
+    }
 
     const handleChange = ({ target: { name, value } }) =>
         setUser({ ...user, [name]: value });
+        
 
     const [error, setError] = useState()
 
@@ -32,7 +36,7 @@ export function Register() {
             if (error.code === "auth/weak-password") {
                 setError("La contraseña debe tener al menos 6 caracteres")
             } else if (error.code === "auth/invalid-email") {
-                setError("email inválido")
+                setError("Email inválido")
             } else if (error.code === "auth/email-already-in-use") {
                 setError("Email en uso")
             } else {
@@ -48,34 +52,64 @@ export function Register() {
     return (
         <div className="w-screen h-screen flex justify-center items-center text-2xl">
              <div className="w-full max-w-sm  justiy-center items-center">
-             {
+
+             { 
                     error && <Alert message={error} />
                 }
-                <span className="bg-purple-50 text-gray-500 font-bold block text-3xl text-center mb-6 p-3    shadow-xl ">Register</span>
+
+                <span className="bg-purple-50 text-gray-500 font-bold block text-3xl text-center mb-6 p-3  shadow-xl ">
+                    Register
+                </span>
+            
             <form className="bg-white shadow-xl rounded-md pt-2 pb-8 flex flex-col items-center" 
                   onSubmit={handleSubmit}>
 
-            <div className="py-6 mx-6 flex flex-col justify-center" >
+                <div className="py-6 mx-6 flex flex-col justify-center" >
 
-                <label className="text-gray-500 font-bold block" htmlFor="email">Email:</label>
+                    <label className="text-gray-500 font-bold block" 
+                    htmlFor="email">Email:
+                    </label>
 
-                <input className="appearance-none shadow-lg drop-shadow-sm hover:drop-shadow-lg border-2 border-gray-200 focus:outline-none rounded-md text-black focus:border-purple-300 py-1 px-2 my-1" onChange={handleChange} type="text" name="email" id="email" placeholder="email@company.com" ></input>
+                    <input className="appearance-none shadow-lg drop-shadow-sm hover:drop-shadow-lg border-2 border-gray-200 focus:outline-none rounded-md text-black focus:border-purple-300 py-1 px-2 my-1" 
+                    onChange={handleChange} 
+                    type="text" 
+                    name="email" 
+                    id="email" 
+                    placeholder="email@company.com" >
+
+                    </input>
             
 
-                <label className="text-gray-500 font-bold block mt-8 " htmlFor="password">Password:</label>
+                    <label className="text-gray-500 font-bold block mt-8 " 
+                    htmlFor="password">
+                    Password:
+                    </label>
                 
                 <input 
                 className="appearance-none shadow-lg drop-shadow-sm hover:drop-shadow-lg border-2 border-gray-200 focus:outline-none rounded-md text-black focus:border-purple-300 py-1 px-2 my-1"
-                onChange={handleChange} type="password" name="password" placeholder="******"
+                onChange={handleChange} 
+                type="password" 
+                name="password" 
+                placeholder="******"
                 autoComplete="off"
                 ></input>
-
+                 <p onClick={handleNav} 
+                 navigate="/register" 
+                 className="text-black text-sm pt-2 text-gray-500 hover:text-gray-700"
+                 > Do you have an account? 
+                 
+                 <span 
+                 className="text-black text-sm pt-2 text-blue-500 cursor-pointer underline hover:text-blue-700">Login
+                 </span></p>
                 
             </div>
-            <button className="text-white bg-blue-500 border-1 border-white leading-tight hover:bg-blue-700 rounded-xl py-2 px-6 text-xl shadow-lg hover:drop-shadow-lg">Register</button>
-            </form>
+            <button className="text-white bg-blue-500 border-1 border-white leading-tight hover:bg-blue-700 rounded-xl py-2 px-6 text-xl shadow-lg hover:drop-shadow-lg">Register
+            </button>
+
+        </form>
+        
         </div>
-        </div>
+    </div>
     )
 }
 
