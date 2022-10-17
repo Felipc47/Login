@@ -26,7 +26,6 @@ export function AuthProvider({ children }) {
     const login = async (email, password) => {
 
         const usercredentials = await signInWithEmailAndPassword(auth, email, password)
-        console.log(usercredentials)
     }
 
 

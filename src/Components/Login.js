@@ -48,7 +48,7 @@ export function Login() {
             navigate("/welcome")
         } catch (error) {
             if (error.code === "auth/wrong-password") {
-                setError("La contraseña es incorrecta")
+                setError("Incorrect password")
             }
             else if (error.code === "auth/user-not-found") {
                 setError("El usuario no está registrado")
